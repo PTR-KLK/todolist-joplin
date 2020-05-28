@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { filterFolders } from "./modules/filterTools";
 import Form from "./components/form";
 import Tree from "./components/tree";
-import List from "./components/list";
-// import filterTodosTree from "./components/getTodosTree";
+import List from "./components/list/list";
 
 export const storageToken = localStorage.getItem("joplinToken");
 const notesUrl = `http://localhost:41184/notes?token=${storageToken}`;
@@ -13,7 +12,7 @@ function App() {
   const [token, setToken] = useState("");
   const [todoData, setTodoData] = useState([]);
   const [fetchLoading, setLoading] = useState(true);
-  const [viewedFolder, setFolder] = useState("");
+  const [viewedFolder, setFolder] = useState('');
 
   useEffect(() => {
     Promise.all([
@@ -33,10 +32,8 @@ function App() {
   };
 
   const onClickFolder = (event) => {
-    setFolder(event.target.id);
+    setFolder(event.target.className);
   };
-
-  console.log(todoData);
 
   return (
     <>
@@ -54,7 +51,7 @@ function App() {
             todoTree={filterFolders(todoData)}
             onClickFolder={onClickFolder}
           />
-          <List todoTree={filterFolders(todoData)} />
+          <List todoTree={filterFolders(todoData)} listId={viewedFolder} />
         </>
       )}
     </>

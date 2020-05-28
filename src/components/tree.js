@@ -6,12 +6,12 @@ const Tree = (props) => {
       {props.todoTree.map((e) => {
         return (
           <section key={e.id}>
-            <h3 id={e.id} onClick={props.onClickFolder}>
+            <h3 className={e.id} onClick={props.onClickFolder}>
               {e.title}
             </h3>
             {e.children.map((el) => {
               return (
-                <h4 id={el.id} key={el.id} onClick={props.onClickFolder}>
+                <h4 className={el.id} key={el.id} onClick={props.onClickFolder}>
                   {el.title}
                 </h4>
               );
