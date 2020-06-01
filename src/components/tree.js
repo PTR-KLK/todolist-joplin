@@ -1,26 +1,24 @@
 import React from "react";
 
 const Tree = (props) => {
-  return (
-    <>
-      {props.todoTree.map((e) => {
-        return (
-          <section key={e.id}>
-            <h3 className={e.id} onClick={props.onClickFolder}>
-              {e.title}
-            </h3>
-            {e.children.map((el) => {
-              return (
-                <h4 className={el.id} key={el.id} onClick={props.onClickFolder}>
-                  {el.title}
-                </h4>
-              );
-            })}
-          </section>
-        );
-      })}
-    </>
-  );
+  const renderTree = (arr, onClickFolder) => {
+    return (
+      <section>
+        {arr.map((e) => {
+          return (
+            <ul key={e.id}>
+              <li className={e.id} onClick={onClickFolder}>
+                {e.title}
+              </li>
+              {e.children ? renderTree(e.children, onClickFolder) : null}
+            </ul>
+          );
+        })}
+      </section>
+    );
+  };
+
+  return renderTree(props.todoTree, props.onClickFolder);
 };
 
 export default Tree;

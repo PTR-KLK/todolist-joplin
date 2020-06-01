@@ -5,7 +5,7 @@ const TodosList = ({ data }) => {
     <ul>
       {data.todos.map((ele, idx) => (
         <li key={ele.id}>
-          <input type="checkbox" name={`todo-${idx}`} value="Bike" />
+          <input type="checkbox" name={`todo-${idx}`} />
           <label htmlFor={`todo-${idx}`}>{ele.title}</label>
         </li>
       ))}
