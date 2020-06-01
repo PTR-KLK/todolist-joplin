@@ -1,15 +1,16 @@
 import React from "react";
+import { Todos } from "./list.style";
 
 const TodosList = ({ data }) => {
   return (
-    <ul>
+    <Todos>
       {data.todos.map((ele, idx) => (
         <li key={ele.id}>
           <input type="checkbox" name={`todo-${idx}`} />
           <label htmlFor={`todo-${idx}`}>{ele.title}</label>
         </li>
       ))}
-    </ul>
+    </Todos>
   );
 };
 

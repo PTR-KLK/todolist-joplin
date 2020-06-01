@@ -1,4 +1,5 @@
 import React from "react";
+import { Navbar, List } from "./tree.style";
 
 const Tree = (props) => {
   const renderTree = (arr, onClickFolder) => {
@@ -6,19 +7,19 @@ const Tree = (props) => {
       <section>
         {arr.map((e) => {
           return (
-            <ul key={e.id}>
-              <li className={e.id} onClick={onClickFolder}>
-                {e.title}
+            <List key={e.id}>
+              <li>
+                <button id={e.id} onClick={onClickFolder}>{e.title}</button>
               </li>
               {e.children ? renderTree(e.children, onClickFolder) : null}
-            </ul>
+            </List>
           );
         })}
       </section>
     );
   };
 
-  return renderTree(props.todoTree, props.onClickFolder);
+  return <Navbar>{renderTree(props.todoTree, props.onClickFolder)}</Navbar>;
 };
 
 export default Tree;

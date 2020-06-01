@@ -32,7 +32,7 @@ function App() {
   };
 
   const onClickFolder = (event) => {
-    setFolder(event.target.className);
+    setFolder(event.target.id);
   };
 
   return (
