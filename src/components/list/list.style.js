@@ -1,17 +1,14 @@
 import styled from 'styled-components'
 
 export const Main = styled.main`
-    display: flex;
-    position: absolute;
-    top: 0;
-    margin: 0 0 0 33vw;
-    flex-direction: column;
+    background: yellow;
     height: 100vh;
-    width: 67vw;
+    width: 100%;
+    overflow: auto;
 `;
 
 export const TodoSection = styled.section`
-    padding: 1rem 0.5rem;
+    
 `;
 
 export const Todos = styled.ul`

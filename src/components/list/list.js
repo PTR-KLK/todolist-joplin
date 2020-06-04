@@ -2,7 +2,7 @@ import React from "react";
 import TodosList from "./todosList";
 import { Main, TodoSection } from "./list.style";
 
-const List = ({ todoTree, listId }) => {
+const List = ({ todoTree, listId, onClickCheckbox }) => {
   let searchObj = {};
 
   const selectList = (arr, id) => {
@@ -21,7 +21,7 @@ const List = ({ todoTree, listId }) => {
     return (
       <TodoSection key={`${obj.id}-todo`}>
         <h3>{obj.title}</h3>
-        {obj.todos ? <TodosList data={obj} /> : null}
+        {obj.todos ? <TodosList data={obj} onClickCheckbox={onClickCheckbox} /> : null}
         {obj.children ? obj.children.map((el) => renderList(el)) : null}
       </TodoSection>
     );

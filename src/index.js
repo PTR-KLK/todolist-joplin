@@ -3,10 +3,20 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Normalize } from 'styled-normalize';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  #root {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}`;
 
 ReactDOM.render(
   <React.StrictMode>
     <Normalize />
+    <GlobalStyle />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
