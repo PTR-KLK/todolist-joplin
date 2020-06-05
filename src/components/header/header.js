@@ -1,16 +1,21 @@
 import React from "react";
-import { Container } from "./header.style";
-import { BarsIcon } from "react-line-awesome";
+import { Link } from "react-router-dom";
+import { Container, MenuIcon, MenuButton, SettingsIcon } from "./header.style";
 
 const Header = (props) => {
   return (
     <Container>
       {props.buttonVisible ? (
-        <button onClick={props.onClickMenu}>
-          <BarsIcon />
-        </button>
+        <MenuButton onClick={props.onClickMenu}>
+          <MenuIcon />
+        </MenuButton>
       ) : null}
-      Joplin TODO List
+      <h2>Joplin TODO List</h2>
+      <Link to="/settings">
+        <MenuButton>
+          <SettingsIcon />
+        </MenuButton>
+      </Link>
     </Container>
   );
 };

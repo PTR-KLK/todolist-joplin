@@ -1,12 +1,12 @@
 import React from "react";
-import { Todos } from "./list.style";
+import { Todos, Checkbox } from "./list.style";
 
 const TodosList = ({ data, onClickCheckbox }) => {
   return (
     <Todos>
       {data.todos.map((ele) => (
         <li key={ele.id}>
-          <input
+          <Checkbox
             type="checkbox"
             name={ele.id}
             onClick={onClickCheckbox}

@@ -1,6 +1,6 @@
 import React from "react";
 import TodosList from "./todosList";
-import { Main, TodoSection } from "./list.style";
+import { Container, TodoSection } from "./list.style";
 
 const List = ({ todoTree, listId, onClickCheckbox }) => {
   let searchObj = {};
@@ -21,20 +21,18 @@ const List = ({ todoTree, listId, onClickCheckbox }) => {
     return (
       <TodoSection key={`${obj.id}-todo`}>
         <h3>{obj.title}</h3>
-        {obj.todos ? (
-          <TodosList data={obj} onClickCheckbox={onClickCheckbox} />
-        ) : null}
+        {obj.todos ? <TodosList data={obj} onClickCheckbox={onClickCheckbox} /> : null}
         {obj.children ? obj.children.map((el) => renderList(el)) : null}
       </TodoSection>
     );
   };
 
   return (
-    <Main>
+    <Container>
       {listId
         ? renderList(selectList(todoTree, listId))
         : todoTree.map((e) => renderList(e))}
-    </Main>
+    </Container>
   );
 };
 

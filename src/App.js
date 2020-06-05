@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { filterFolders } from "./modules/filterTools";
+import { BrowserRouter as Router } from "react-router-dom";
 import useWindowSize from "./modules/useWindowSize";
 import Header from "./components/header/header";
-import Form from "./components/form";
-import Tree from "./components/tree";
-import List from "./components/list/list";
+import Main from "./components/main/main";
 
 export const storageToken = localStorage.getItem("joplinToken");
 const notesUrl = `http://localhost:41184/notes?token=${storageToken}&fields=id,parent_id,title,is_todo,todo_completed,todo_due`;
@@ -55,32 +53,26 @@ function App() {
   };
 
   return (
-    <>
-      <Header onClickMenu={onClickMenu} buttonVisible={size.width < 1024} />
-      {localStorage.getItem("joplinToken") === null ? (
-        <Form
-          token={token}
-          handleChange={handleChange}
-          handleClick={handleClick}
-        />
-      ) : fetchLoading ? (
-        "Ładowanie"
-      ) : (
-        <>
-          {menuVisible || size.width >= 1024 ? (
-            <Tree
-              todoTree={filterFolders(todoData)}
-              onClickFolder={onClickFolder}
-            />
-          ) : null}
-          <List
-            todoTree={filterFolders(todoData)}
-            listId={viewedFolder}
-            onClickCheckbox={onClickCheckbox}
-          />
-        </>
-      )}
-    </>
+    <Router>
+      <Header
+        onClickMenu={onClickMenu}
+        buttonVisible={
+          size.width < 1024 && localStorage.getItem("joplinToken") !== null
+        }
+      />
+      <Main
+        todoData={todoData}
+        token={token}
+        handleChange={handleChange}
+        handleClick={handleClick}
+        onClickFolder={onClickFolder}
+        fetchLoading={fetchLoading}
+        onClickCheckbox={onClickCheckbox}
+        viewedFolder={viewedFolder}
+        menuVisible={menuVisible}
+        size={size}
+      />
+    </Router>
   );
 }
 

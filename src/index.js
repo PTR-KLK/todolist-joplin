@@ -8,9 +8,9 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   #root {
     display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
 }`;
 
 ReactDOM.render(
