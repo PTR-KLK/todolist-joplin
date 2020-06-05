@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { filterFolders } from "./modules/filterTools";
+import useWindowSize from "./modules/useWindowSize";
 import Header from "./components/header/header";
 import Form from "./components/form";
 import Tree from "./components/tree";
@@ -13,7 +14,7 @@ function App() {
   const [token, setToken] = useState("");
   const [todoData, setTodoData] = useState([]);
   const [fetchLoading, setLoading] = useState(true);
-  const [viewedFolder, setFolder] = useState('');
+  const [viewedFolder, setFolder] = useState("");
   const [menuVisible, setMenuVisibility] = useState(false);
 
   useEffect(() => {
@@ -24,6 +25,8 @@ function App() {
       .then((data) => setTodoData(data))
       .then(() => setLoading(false));
   }, []);
+
+  const size = useWindowSize();
 
   const handleChange = (event) => {
     setToken(event.target.value);
@@ -38,21 +41,22 @@ function App() {
   };
 
   const onClickCheckbox = (event) => {
-    console.log(event.target.defaultChecked);
-    return fetch(`http://localhost:41184/notes/${event.target.name}?token=${storageToken}`,{
-      method: 'PUT',
-      body: JSON.stringify({"todo_completed": !event.target.defaultChecked})
-    });
-  }
+    return fetch(
+      `http://localhost:41184/notes/${event.target.name}?token=${storageToken}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ todo_completed: !event.target.defaultChecked }),
+      }
+    );
+  };
 
   const onClickMenu = () => {
     setMenuVisibility(!menuVisible);
-    console.log(menuVisible);
-  }
+  };
 
   return (
     <>
-      <Header onClickMenu={onClickMenu} />
+      <Header onClickMenu={onClickMenu} buttonVisible={size.width < 1024} />
       {localStorage.getItem("joplinToken") === null ? (
         <Form
           token={token}
@@ -63,11 +67,17 @@ function App() {
         "Ładowanie"
       ) : (
         <>
-          {menuVisible ? <Tree
+          {menuVisible || size.width >= 1024 ? (
+            <Tree
+              todoTree={filterFolders(todoData)}
+              onClickFolder={onClickFolder}
+            />
+          ) : null}
+          <List
             todoTree={filterFolders(todoData)}
-            onClickFolder={onClickFolder}
-          /> : null}
-          <List todoTree={filterFolders(todoData)} listId={viewedFolder} onClickCheckbox={onClickCheckbox} />
+            listId={viewedFolder}
+            onClickCheckbox={onClickCheckbox}
+          />
         </>
       )}
     </>

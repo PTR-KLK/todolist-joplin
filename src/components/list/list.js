@@ -21,7 +21,9 @@ const List = ({ todoTree, listId, onClickCheckbox }) => {
     return (
       <TodoSection key={`${obj.id}-todo`}>
         <h3>{obj.title}</h3>
-        {obj.todos ? <TodosList data={obj} onClickCheckbox={onClickCheckbox} /> : null}
+        {obj.todos ? (
+          <TodosList data={obj} onClickCheckbox={onClickCheckbox} />
+        ) : null}
         {obj.children ? obj.children.map((el) => renderList(el)) : null}
       </TodoSection>
     );
