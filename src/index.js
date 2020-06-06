@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+    font-family: Lato, "Lucida Grande", Tahoma, Sans-Serif;
 }`;
 
 ReactDOM.render(

@@ -25,6 +25,7 @@ export const MenuButton= styled.button`
   background: none;
   border: none;
   border-radius: 0.25rem;
+  cursor: pointer;
 
   &:hover > * {
     color: #9FCC2E;

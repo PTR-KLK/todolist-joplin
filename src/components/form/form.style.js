@@ -5,6 +5,10 @@ export const Container = styled.form`
   flex-direction: column;
   align-items: center;
   margin: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: #295135;
+  color: #FFF;
 `;
 
 export const TextInput = styled.input`

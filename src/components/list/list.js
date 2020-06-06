@@ -1,6 +1,6 @@
 import React from "react";
 import TodosList from "./todosList";
-import { Container, TodoSection } from "./list.style";
+import { Container, TodoSection, TodoTitle } from "./list.style";
 
 const List = ({ todoTree, listId, onClickCheckbox }) => {
   let searchObj = {};
@@ -20,7 +20,7 @@ const List = ({ todoTree, listId, onClickCheckbox }) => {
   const renderList = (obj) => {
     return (
       <TodoSection key={`${obj.id}-todo`}>
-        <h3>{obj.title}</h3>
+        <TodoTitle>{obj.title}</TodoTitle>
         {obj.todos ? <TodosList data={obj} onClickCheckbox={onClickCheckbox} /> : null}
         {obj.children ? obj.children.map((el) => renderList(el)) : null}
       </TodoSection>
