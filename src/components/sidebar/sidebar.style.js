@@ -1,36 +1,39 @@
 import styled from "styled-components";
 
 export const Navbar = styled.nav`
-  position: ${props => props.isFixed ? 'fixed' : 'static'};
-  background: #295135;
+  position: ${(props) => (props.isFixed ? "fixed" : "static")};
+  background: #2e3440;
   height: 100%;
-  width: 30%;
+`;
+
+export const NavList = styled.ul`
+  list-style: none;
+  margin: 0;
   padding: 0;
 `;
 
-export const List = styled.ul`
+export const NavButton = styled.button`
+  margin: 1rem 0;
+  cursor: pointer;
+  background: none;
+  border: none;
   display: flex;
   flex-direction: column;
-  list-style: none;
-  padding: 0 0 0 0.75rem;
-  margin: 0;
-`;
-
-export const ListItem = styled.li`
-  color: white;
+  align-items: center;
+  color: #8fbcbb;
+  font-size: 1.25rem;
+  width: 100%;
 
   & > * {
-    width: 100%;
-    border: 0;
-    background: none;
-    color: white;
-    cursor: pointer;
-    padding: 0.25rem;
-    text-align: left;
+    font-size: 1.75rem;
   }
 
-  &:hover > * {
-    color: #000;
-    background: #9FCC2E;
+  &:hover {
+    background: #8fbcbb;
+    color: #2e3440;
+
+    & > * {
+      color: #2e3440;
+    }
   }
 `;

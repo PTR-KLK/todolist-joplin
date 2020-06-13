@@ -3,29 +3,41 @@ import styled from "styled-components";
 export const Container = styled.main`
   width: 100vw;
   height: 100%;
-  padding: 1rem;
   overflow: auto;
 `;
 
 export const TodoSection = styled.section`
-  border: 1px solid grey;
+  border: 2px solid #0E402D;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  padding: 1rem 1rem 0 1rem;
-  margin: 0 0 1rem 0;
+  margin: 1rem;
 `;
 
-export const TodoTitle = styled.h3`
-  margin: 0 0 1rem 0;
+export const TodoTitle = styled.p`
+  background: #0E402D;
+  color: #FFF;
+  margin: 0;
+  padding: 0.875rem;
+  font-size: 1.125rem;
 `;
 
 export const Todos = styled.ul`
   list-style: none;
+  margin: 0 0.875rem 0.875rem;
   padding: 0;
+`;
+
+export const TodoLi = styled.li`
+  padding: calc(1px + 0.875rem);
+  border-bottom: 1px solid #0E402D;
 `;
 
 export const Checkbox = styled.input`
   &:checked:after{
     background: #295135;
   }
+`;
+
+export const Label = styled.label`
+  margin: 0 0.875rem;
+  font-size: 1.125rem;
 `;

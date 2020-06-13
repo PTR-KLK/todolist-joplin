@@ -1,29 +1,37 @@
 import React from "react";
-import { Navbar, List, ListItem } from "./sidebar.style";
+import { Link } from "react-router-dom";
+import { Navbar, NavList, NavButton } from "./sidebar.style";
+import { CogIcon, TasksIcon, HomeIcon } from "react-line-awesome";
 
 const Sidebar = (props) => {
-  const renderTree = (arr, onClickFolder) => {
-    return (
-      <section>
-        {arr.map((e) => {
-          return (
-            <List key={e.id}>
-              <ListItem>
-                <button id={e.id} onClick={onClickFolder}>
-                  {e.title}
-                </button>
-              </ListItem>
-              {e.children ? renderTree(e.children, onClickFolder) : null}
-            </List>
-          );
-        })}
-      </section>
-    );
-  };
-
   return (
     <Navbar isFixed={props.isFixed}>
-      {renderTree(props.todoTree, props.onClickFolder)}
+      <NavList>
+        <li>
+          <Link style={{ textDecoration: "none" }} to="/">
+            <NavButton>
+              <HomeIcon />
+              Home
+            </NavButton>
+          </Link>
+        </li>
+        <li>
+          <Link style={{ textDecoration: "none" }} to="/projects">
+            <NavButton onClick={props.onClickProjects}>
+              <TasksIcon />
+              Projects
+            </NavButton>
+          </Link>
+        </li>
+        <li>
+          <Link style={{ textDecoration: "none" }} to="/settings">
+            <NavButton>
+              <CogIcon />
+              Settings
+            </NavButton>
+          </Link>
+        </li>
+      </NavList>
     </Navbar>
   );
 };

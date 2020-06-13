@@ -14,6 +14,7 @@ function App() {
   const [fetchLoading, setLoading] = useState(true);
   const [viewedFolder, setFolder] = useState("");
   const [menuVisible, setMenuVisibility] = useState(false);
+  const [projectsBarVisible, setProjectsBarVisibility] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -52,6 +53,10 @@ function App() {
     setMenuVisibility(!menuVisible);
   };
 
+  const onClickProjects = () => {
+    setProjectsBarVisibility(!projectsBarVisible);
+  };
+
   return (
     <Router>
       <Header
@@ -71,6 +76,8 @@ function App() {
         viewedFolder={viewedFolder}
         menuVisible={menuVisible}
         size={size}
+        onClickProjects={onClickProjects}
+        projectsBarVisible={projectsBarVisible}
       />
     </Router>
   );

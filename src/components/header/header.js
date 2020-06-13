@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, MenuIcon, MenuButton, SettingsIcon } from "./header.style";
+import { Container, Title, MenuIcon, MenuButton } from "./header.style";
 
 const Header = (props) => {
   return (
@@ -10,12 +9,7 @@ const Header = (props) => {
           <MenuIcon />
         </MenuButton>
       ) : null}
-      <h2>Joplin TODO List</h2>
-      <Link to="/settings">
-        <MenuButton>
-          <SettingsIcon />
-        </MenuButton>
-      </Link>
+      <Title>Joplin TODO List</Title>
     </Container>
   );
 };

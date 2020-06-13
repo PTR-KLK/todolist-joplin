@@ -1,24 +1,24 @@
 import React from "react";
-import { Todos, Checkbox } from "./list.style";
+import { Todos, Checkbox, Label, TodoLi } from "./list.style";
 
 const TodosList = ({ data, onClickCheckbox }) => {
   return (
     <Todos>
       {data.todos.map((ele) => (
-        <li key={ele.id}>
+        <TodoLi key={ele.id}>
           <Checkbox
             type="checkbox"
             name={ele.id}
             onClick={onClickCheckbox}
             defaultChecked={ele.todo_completed}
           />
-          <label htmlFor={ele.id}>
+          <Label htmlFor={ele.id}>
             {ele.title}
             {ele.todo_due
               ? ` ${new Date(parseInt(ele.todo_due)).toLocaleString()}`
               : null}
-          </label>
-        </li>
+          </Label>
+        </TodoLi>
       ))}
     </Todos>
   );
