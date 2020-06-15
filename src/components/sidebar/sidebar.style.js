@@ -4,6 +4,11 @@ export const Navbar = styled.nav`
   position: ${(props) => (props.isFixed ? "fixed" : "static")};
   background: #2e3440;
   height: 100%;
+  width: 33%;
+
+  @media (min-width: 768px) {
+    width: 15%;
+  }
 `;
 
 export const NavList = styled.ul`
@@ -23,6 +28,8 @@ export const NavButton = styled.button`
   color: #8fbcbb;
   font-size: 1.25rem;
   width: 100%;
+  border-top: 1px solid #2e3440;
+  border-bottom: 1px solid #2e3440;
 
   & > * {
     font-size: 1.75rem;
@@ -36,4 +43,17 @@ export const NavButton = styled.button`
       color: #2e3440;
     }
   }
+
+  &:focus {
+    background: #3b4252;
+    color: #ebcb8b;
+    outline: none;
+    border-top: 1px solid #ebcb8b;
+    border-bottom: 1px solid #ebcb8b;
+
+    & > * {
+      color: #ebcb8b;
+    }
+  }
+
 `;

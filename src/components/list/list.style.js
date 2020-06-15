@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-  width: 100vw;
-  height: 100%;
   overflow: auto;
+
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    width: 60%;
+  }
 `;
 
 export const TodoSection = styled.section`

@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
 export const Navbar = styled.nav`
-  position: sticky;
-  background: #295135;
+  position: ${(props) => (props.isFixed ? "fixed" : "static")};
+  background: #3b4252;
+  left: 33%;
   height: 100%;
-  width: 30%;
+  width: 67%;
   padding: 0;
+
+  @media (min-width: 768px) {
+    left: 15%;
+    width: 30%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 25%;
+  }
 `;
 
 export const List = styled.ul`

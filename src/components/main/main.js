@@ -4,6 +4,7 @@ import { filterFolders } from "../../modules/filterTools";
 import { Container } from "./main.style";
 import List from "../list/list";
 import Form from "../../pages/form/form";
+// import Projects from "../../pages/projects/projects";
 import ProjectsBar from "../projectsBar/projectsBar";
 import Sidebar from "../sidebar/sidebar";
 
@@ -23,10 +24,11 @@ function Main(props) {
             <>
               <Sidebar
                 isFixed={props.size.width < 1024}
-                onClickProjects={props.onClickProjects}
+                showProjectsBar={props.showProjectsBar}
               />
               {props.projectsBarVisible ? (
                 <ProjectsBar
+                  isFixed={props.size.width < 1024}
                   todoTree={filterFolders(props.todoData)}
                   onClickFolder={props.onClickFolder}
                 />
@@ -35,6 +37,7 @@ function Main(props) {
           ) : null}
           <Switch>
             <Route exact path="/projects">
+              
               {props.fetchLoading ? (
                 "Loading"
               ) : (

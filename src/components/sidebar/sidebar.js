@@ -9,7 +9,7 @@ const Sidebar = (props) => {
       <NavList>
         <li>
           <Link style={{ textDecoration: "none" }} to="/">
-            <NavButton>
+            <NavButton id="home" onClick={props.showProjectsBar}>
               <HomeIcon />
               Home
             </NavButton>
@@ -17,7 +17,7 @@ const Sidebar = (props) => {
         </li>
         <li>
           <Link style={{ textDecoration: "none" }} to="/projects">
-            <NavButton onClick={props.onClickProjects}>
+            <NavButton id="projects" onClick={props.showProjectsBar}>
               <TasksIcon />
               Projects
             </NavButton>
@@ -25,7 +25,7 @@ const Sidebar = (props) => {
         </li>
         <li>
           <Link style={{ textDecoration: "none" }} to="/settings">
-            <NavButton>
+            <NavButton id="settings" onClick={props.showProjectsBar}>
               <CogIcon />
               Settings
             </NavButton>

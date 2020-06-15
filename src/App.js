@@ -53,8 +53,14 @@ function App() {
     setMenuVisibility(!menuVisible);
   };
 
-  const onClickProjects = () => {
-    setProjectsBarVisibility(!projectsBarVisible);
+  const showProjectsBar = (event) => {
+    switch (event.target.id) {
+      case "projects":
+        setProjectsBarVisibility(true);
+        break;
+      default:
+        setProjectsBarVisibility(false);
+    }
   };
 
   return (
@@ -76,7 +82,7 @@ function App() {
         viewedFolder={viewedFolder}
         menuVisible={menuVisible}
         size={size}
-        onClickProjects={onClickProjects}
+        showProjectsBar={showProjectsBar}
         projectsBarVisible={projectsBarVisible}
       />
     </Router>

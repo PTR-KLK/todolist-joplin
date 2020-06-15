@@ -22,7 +22,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <Navbar>
+    <Navbar isFixed={props.isFixed} >
       {renderTree(props.todoTree, props.onClickFolder)}
     </Navbar>
   );
