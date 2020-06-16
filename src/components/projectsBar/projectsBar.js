@@ -1,29 +1,20 @@
 import React from "react";
-import { Navbar, List, ListItem } from "./projectsBar.style";
+import { Navbar, List, ProjectButton } from "./projectsBar.style";
 
 const Sidebar = (props) => {
-  const renderTree = (arr, onClickFolder) => {
-    return (
-      <section>
-        {arr.map((e) => {
+  return (
+    <Navbar isFixed={props.isFixed}>
+      <List>
+        {props.todoTree.map((e) => {
           return (
-            <List key={e.id}>
-              <ListItem>
-                <button id={e.id} onClick={onClickFolder}>
-                  {e.title}
-                </button>
-              </ListItem>
-              {e.children ? renderTree(e.children, onClickFolder) : null}
-            </List>
+            <li key={e.id}>
+              <ProjectButton id={e.id} onClick={props.onClickFolder}>
+                {e.title}
+              </ProjectButton>
+            </li>
           );
         })}
-      </section>
-    );
-  };
-
-  return (
-    <Navbar isFixed={props.isFixed} >
-      {renderTree(props.todoTree, props.onClickFolder)}
+      </List>
     </Navbar>
   );
 };

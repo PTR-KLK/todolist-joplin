@@ -22,30 +22,45 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
-  padding: 0 0 0 0.75rem;
+  padding: 0;
   margin: 0;
 `;
 
-export const ListItem = styled.li`
-  color: white;
+export const ProjectButton = styled.button`
+  padding: 0.5rem 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #8fbcbb;
+  font-size: 1rem;
+  width: 100%;
 
   & > * {
-    width: 100%;
-    border: 0;
-    background: none;
-    color: white;
-    cursor: pointer;
-    padding: 0.25rem;
-    text-align: left;
+    font-size: 1.75rem;
   }
 
-  &:hover > button {
-    color: #000;
-    background: #9FCC2E;
+  &:hover {
+    background: #8fbcbb;
+    color: #2e3440;
+
+    & > * {
+      color: #2e3440;
+    }
   }
 
-  &:active  {
-    color: #000;
-    background: #9FCC2E;
+  &:focus {
+    background: #3b4252;
+    color: #ebcb8b;
+    outline: 1px solid #3b4252;
+    border-top: 1px solid #ebcb8b;
+    border-bottom: 1px solid #ebcb8b;
+
+    & > * {
+      color: #ebcb8b;
+    }
   }
+
 `;

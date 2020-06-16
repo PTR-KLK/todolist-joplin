@@ -2,9 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { filterFolders } from "../../modules/filterTools";
 import { Container } from "./main.style";
-import List from "../list/list";
 import Form from "../../pages/form/form";
-// import Projects from "../../pages/projects/projects";
+import Projects from "../../pages/projects/projects";
 import ProjectsBar from "../projectsBar/projectsBar";
 import Sidebar from "../sidebar/sidebar";
 
@@ -37,12 +36,11 @@ function Main(props) {
           ) : null}
           <Switch>
             <Route exact path="/projects">
-              
               {props.fetchLoading ? (
                 "Loading"
               ) : (
                 <>
-                  <List
+                  <Projects
                     todoTree={filterFolders(props.todoData)}
                     listId={props.viewedFolder}
                     onClickCheckbox={props.onClickCheckbox}
