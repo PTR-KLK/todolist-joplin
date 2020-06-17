@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Checkbox, Label, DueDate, Todo } from "./todos.style";
+import { List, Checkbox, Label, DueDate, Todo, NewTodo, SubmitTodo, TextInput } from "./todos.style";
 
 const Todos = ({ data, onClickCheckbox }) => {
   return (
@@ -20,6 +20,11 @@ const Todos = ({ data, onClickCheckbox }) => {
           ) : null}
         </Todo>
       ))}
+      <NewTodo>
+        <SubmitTodo type="submit" value="+"/>
+        <TextInput type="text" placeholder="Add new task..." />
+      </NewTodo>
+      
     </List>
   );
 };

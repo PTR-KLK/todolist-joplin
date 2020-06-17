@@ -7,7 +7,7 @@ export const Container = styled.form`
   margin: auto;
   padding: 1rem;
   border-radius: 0.5rem;
-  background: #295135;
+  background: #3b4252;
   color: #FFF;
 `;
 

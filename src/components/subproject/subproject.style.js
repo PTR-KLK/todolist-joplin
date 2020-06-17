@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   border: 2px solid #434c5e;
-  border-radius: 0.5rem;
   margin: 1rem;
 `;
 
 export const Title = styled.p`
   background: #434c5e;
+  display: flex;
+  align-items: center;
   color: #FFF;
   margin: 0;
   padding: 0.875rem;
@@ -15,9 +16,9 @@ export const Title = styled.p`
 `;
 
 export const Checkbox = styled.input`
-  &:checked:after{
-    background: #295135;
-  }
+  height: 1.375rem;
+  width: 1.375rem;
+  cursor: pointer;
 `;
 
 export const Label = styled.label`
