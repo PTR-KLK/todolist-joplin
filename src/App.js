@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import useWindowSize from "./modules/useWindowSize";
 import Header from "./components/header/header";
 import Main from "./components/main/main";
+import { filterFolders } from "./modules/filterTools";
 
 export const storageToken = localStorage.getItem("joplinToken");
 const notesUrl = `http://localhost:41184/notes?token=${storageToken}&fields=id,parent_id,title,is_todo,todo_completed,todo_due`;
@@ -15,16 +16,21 @@ function App() {
   const [viewedFolder, setFolder] = useState("");
   const [menuVisible, setMenuVisibility] = useState(false);
   const [projectsBarVisible, setProjectsBarVisibility] = useState(false);
-  const [newTodoText, setNewTodoText] = useState('');
+  const [newTodoText, setNewTodoText] = useState("");
 
-  useEffect(() => {
-    Promise.all([
+  const refreshTodoData = useCallback(()=>{
+    return Promise.all([
       fetch(notesUrl).then((response) => response.json()),
       fetch(fodlersUrl).then((response) => response.json()),
     ])
-      .then((data) => setTodoData(data))
+      .then((data) => setTodoData([data[0], filterFolders(data)]))
       .then(() => setLoading(false));
-  }, []);
+  },[]);
+  
+  
+  useEffect(() => {
+    refreshTodoData();
+  }, [refreshTodoData]);
 
   const size = useWindowSize();
 
@@ -70,7 +76,6 @@ function App() {
 
   const submitNewTodo = (event) => {
     event.preventDefault();
-    console.log(newTodoText, event.target.name);
     fetch(`http://localhost:41184/notes?token=${storageToken}`, {
       method: "POST",
       body: JSON.stringify({
@@ -79,6 +84,28 @@ function App() {
         parent_id: event.target.name,
       }),
     });
+
+    refreshTodoData();
+    setNewTodoText("");
+  };
+
+  const submitNewProject = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:41184/folders?token=${storageToken}`, {
+      method: "POST",
+      body: JSON.stringify({
+        title: newTodoText,
+        children: [],
+      }),
+    }).then((response) => {
+      response
+        .json()
+        .then((data) => {
+          setTodoData([todoData[0], [...todoData[1], data]]);
+          setFolder(data.id);
+        });
+    });
+
     setNewTodoText("");
   };
 
@@ -106,6 +133,7 @@ function App() {
         newTodoText={newTodoText}
         onChangeText={onChangeText}
         submitNewTodo={submitNewTodo}
+        submitNewProject={submitNewProject}
       />
     </Router>
   );

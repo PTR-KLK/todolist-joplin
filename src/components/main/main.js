@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { filterFolders } from "../../modules/filterTools";
 import { Container } from "./main.style";
 import Form from "../../pages/form/form";
 import Projects from "../../pages/projects/projects";
@@ -28,8 +27,11 @@ function Main(props) {
               {props.projectsBarVisible ? (
                 <ProjectsBar
                   isFixed={props.size.width < 1024}
-                  todoTree={filterFolders(props.todoData)}
+                  todoTree={props.todoData[1]}
                   onClickFolder={props.onClickFolder}
+                  submitNewProject={props.submitNewProject}
+                  onChangeText={props.onChangeText}
+                  newTodoText={props.newTodoText}
                 />
               ) : null}
             </>
@@ -43,7 +45,7 @@ function Main(props) {
                   <Projects
                     onChangeText={props.onChangeText}
                     newTodoText={props.newTodoText}
-                    todoTree={filterFolders(props.todoData)}
+                    todoTree={props.todoData[1]}
                     listId={props.viewedFolder}
                     onClickCheckbox={props.onClickCheckbox}
                     submitNewTodo={props.submitNewTodo}
