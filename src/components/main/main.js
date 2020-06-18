@@ -41,9 +41,12 @@ function Main(props) {
               ) : (
                 <>
                   <Projects
+                    onChangeText={props.onChangeText}
+                    newTodoText={props.newTodoText}
                     todoTree={filterFolders(props.todoData)}
                     listId={props.viewedFolder}
                     onClickCheckbox={props.onClickCheckbox}
+                    submitNewTodo={props.submitNewTodo}
                   />
                 </>
               )}

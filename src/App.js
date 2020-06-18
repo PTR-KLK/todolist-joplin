@@ -15,6 +15,7 @@ function App() {
   const [viewedFolder, setFolder] = useState("");
   const [menuVisible, setMenuVisibility] = useState(false);
   const [projectsBarVisible, setProjectsBarVisibility] = useState(false);
+  const [newTodoText, setNewTodoText] = useState('');
 
   useEffect(() => {
     Promise.all([
@@ -63,6 +64,24 @@ function App() {
     }
   };
 
+  const onChangeText = (event) => {
+    setNewTodoText(event.target.value);
+  };
+
+  const submitNewTodo = (event) => {
+    event.preventDefault();
+    console.log(newTodoText, event.target.name);
+    fetch(`http://localhost:41184/notes?token=${storageToken}`, {
+      method: "POST",
+      body: JSON.stringify({
+        title: newTodoText,
+        is_todo: 1,
+        parent_id: event.target.name,
+      }),
+    });
+    setNewTodoText("");
+  };
+
   return (
     <Router>
       <Header
@@ -84,6 +103,9 @@ function App() {
         size={size}
         showProjectsBar={showProjectsBar}
         projectsBarVisible={projectsBarVisible}
+        newTodoText={newTodoText}
+        onChangeText={onChangeText}
+        submitNewTodo={submitNewTodo}
       />
     </Router>
   );

@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   border: 2px solid #434c5e;
-  margin: 1rem;
+  margin: 1rem 1rem 0;
+  padding-bottom: 0.875rem;
 `;
 
 export const Title = styled.p`
