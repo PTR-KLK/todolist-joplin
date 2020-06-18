@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { Container } from "./main.style";
 import Form from "../../pages/form/form";
 import Projects from "../../pages/projects/projects";
+import Home from "../../pages/home/home";
 import ProjectsBar from "../projectsBar/projectsBar";
 import Sidebar from "../sidebar/sidebar";
 
@@ -37,6 +38,15 @@ function Main(props) {
             </>
           ) : null}
           <Switch>
+            <Route exact path="/">
+              {props.fetchLoading ? (
+                "Loading"
+              ) : (
+                <>
+                  <Home data={props.todoData} />
+                </>
+              )}
+            </Route>
             <Route exact path="/projects">
               {props.fetchLoading ? (
                 "Loading"

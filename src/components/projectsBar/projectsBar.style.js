@@ -27,13 +27,13 @@ export const List = styled.ul`
 `;
 
 export const ProjectButton = styled.button`
-  padding: 0.5rem 0;
+  padding: 0.5rem calc(0.5rem + 6px);
   cursor: pointer;
   background: none;
   border: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   color: #8fbcbb;
   font-size: 1rem;
   width: 100%;
