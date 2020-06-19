@@ -2,26 +2,27 @@ import React from "react";
 import Subproject from "../../components/subproject/subproject";
 import Todos from "../../components/todos/todos";
 import { Container } from "./projects.style";
-import NewTodo from "../../components/newTodo/newTodo";
+import AddElement from "../../components/addElement/addElement";
 
 function Projects(props) {
-  const selectedList = props.listId
-    ? props.todoTree.find((e) => e.id === props.listId)
+  const selectedList = props.activeFolder
+    ? props.todoTree.find((e) => e.id === props.activeFolder)
     : props.todoTree[0];
 
   return (
     <Container>
-      <NewTodo
-        submitNewTodo={props.submitNewTodo}
+      <AddElement
+        submitNewElement={props.submitNewTodo}
         onChangeText={props.onChangeText}
-        newTodoText={props.newTodoText}
+        textInput={props.textInput}
+        placeholderText="Add new task..."
         submitName={selectedList.id}
+        todoStyle={true}
+        onClickInput={props.onClickInput}
+        activeInput={props.activeInput}
       />
       {selectedList.todos ? (
-        <Todos
-          data={selectedList}
-          onClickCheckbox={props.onClickCheckbox}
-        />
+        <Todos data={selectedList} onClickCheckbox={props.onClickCheckbox} />
       ) : null}
       {selectedList.children
         ? selectedList.children.map((el) => (
@@ -30,8 +31,10 @@ function Projects(props) {
               listObj={el}
               onClickCheckbox={props.onClickCheckbox}
               onChangeText={props.onChangeText}
-              newTodoText={props.newTodoText}
+              textInput={props.textInput}
               submitNewTodo={props.submitNewTodo}
+              onClickInput={props.onClickInput}
+              activeInput={props.activeInput}
             />
           ))
         : null}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Navbar = styled.nav`
   position: ${(props) => (props.isFixed ? "fixed" : "static")};
-  background: #2e3440;
+  background: #434c5e;
   height: 100%;
   width: 33%;
 
@@ -25,7 +25,7 @@ export const NavButton = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #8fbcbb;
+  color: #eceff4;
   font-size: 1.25rem;
   width: 100%;
   
@@ -34,16 +34,11 @@ export const NavButton = styled.button`
   }
 
   &:hover {
-    background: #8fbcbb;
-    color: #2e3440;
-
-    & > * {
-      color: #2e3440;
-    }
+    background: #5e81ac;
   }
 
   &:focus {
-    background: #3b4252;
+    background: #5e81ac;
     color: #ebcb8b;
     outline: 1px solid #ebcb8b;
 

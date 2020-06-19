@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, List, ProjectButton } from "./projectsBar.style";
-import NewProject from "../newProject/newProject";
+import AddElement from "..//addElement/addElement";
 
 const Sidebar = (props) => {
   return (
@@ -9,16 +9,25 @@ const Sidebar = (props) => {
         {props.todoTree.map((e) => {
           return (
             <li key={e.id}>
-              <ProjectButton id={e.id} onClick={props.onClickFolder}>
+              <ProjectButton
+                id={e.id}
+                onClick={props.onClickFolder}
+                highlightFolder={props.activeFolder === e.id}
+              >
                 {e.title}
               </ProjectButton>
             </li>
           );
         })}
-        <NewProject
-          submitNewProject={props.submitNewProject}
+        <AddElement
+          submitNewElement={props.submitNewProject}
           onChangeText={props.onChangeText}
-          newTodoText={props.newTodoText}
+          textInput={props.textInput}
+          placeholderText="Add new project..."
+          submitName="porjectsBarInput"
+          todoStyle={false}
+          onClickInput={props.onClickInput}
+          activeInput={props.activeInput}
         />
       </List>
     </Navbar>

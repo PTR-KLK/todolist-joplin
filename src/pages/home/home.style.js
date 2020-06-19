@@ -7,5 +7,6 @@ export const Container = styled.section`
   margin: auto;
   padding: 1rem;
   background: #3b4252;
+  color: #eceff4;
   color: #FFF;
 `;

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Section = styled.section`
-  border: 2px solid #434c5e;
+  border: 2px solid #3b4252;
   margin: 1rem 1rem 0;
   padding-bottom: 0.875rem;
 `;
 
 export const Title = styled.p`
-  background: #434c5e;
+  background: #3b4252;
+  color: #eceff4;
   display: flex;
   align-items: center;
   color: #FFF;

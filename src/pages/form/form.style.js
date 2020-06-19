@@ -6,8 +6,8 @@ export const Container = styled.form`
   align-items: center;
   margin: auto;
   padding: 1rem;
-  border-radius: 0.5rem;
   background: #3b4252;
+  color: #eceff4;
   color: #FFF;
 `;
 

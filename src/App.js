@@ -13,21 +13,21 @@ function App() {
   const [token, setToken] = useState("");
   const [todoData, setTodoData] = useState([]);
   const [fetchLoading, setLoading] = useState(true);
-  const [viewedFolder, setFolder] = useState("");
+  const [activeFolder, setFolder] = useState("");
   const [menuVisible, setMenuVisibility] = useState(false);
   const [projectsBarVisible, setProjectsBarVisibility] = useState(false);
-  const [newTodoText, setNewTodoText] = useState("");
+  const [textInput, setTextInput] = useState("");
+  const [activeInput, setActiveInput] = useState("");
 
-  const refreshTodoData = useCallback(()=>{
+  const refreshTodoData = useCallback(() => {
     return Promise.all([
       fetch(notesUrl).then((response) => response.json()),
       fetch(fodlersUrl).then((response) => response.json()),
     ])
       .then((data) => setTodoData([data[0], filterFolders(data)]))
       .then(() => setLoading(false));
-  },[]);
-  
-  
+  }, []);
+
   useEffect(() => {
     refreshTodoData();
   }, [refreshTodoData]);
@@ -71,7 +71,11 @@ function App() {
   };
 
   const onChangeText = (event) => {
-    setNewTodoText(event.target.value);
+    setTextInput(event.target.value);
+  };
+
+  const onClickInput = (event) => {
+    setActiveInput(event.target.parentNode.name);
   };
 
   const submitNewTodo = (event) => {
@@ -79,14 +83,14 @@ function App() {
     fetch(`http://localhost:41184/notes?token=${storageToken}`, {
       method: "POST",
       body: JSON.stringify({
-        title: newTodoText,
+        title: textInput,
         is_todo: 1,
         parent_id: event.target.name,
       }),
     });
 
     refreshTodoData();
-    setNewTodoText("");
+    setTextInput("");
   };
 
   const submitNewProject = (event) => {
@@ -94,19 +98,17 @@ function App() {
     fetch(`http://localhost:41184/folders?token=${storageToken}`, {
       method: "POST",
       body: JSON.stringify({
-        title: newTodoText,
+        title: textInput,
         children: [],
       }),
     }).then((response) => {
-      response
-        .json()
-        .then((data) => {
-          setTodoData([todoData[0], [...todoData[1], data]]);
-          setFolder(data.id);
-        });
+      response.json().then((data) => {
+        setTodoData([todoData[0], [...todoData[1], data]]);
+        setFolder(data.id);
+      });
     });
 
-    setNewTodoText("");
+    setTextInput("");
   };
 
   return (
@@ -125,12 +127,14 @@ function App() {
         onClickFolder={onClickFolder}
         fetchLoading={fetchLoading}
         onClickCheckbox={onClickCheckbox}
-        viewedFolder={viewedFolder}
+        activeFolder={activeFolder}
         menuVisible={menuVisible}
         size={size}
         showProjectsBar={showProjectsBar}
         projectsBarVisible={projectsBarVisible}
-        newTodoText={newTodoText}
+        textInput={textInput}
+        activeInput={activeInput}
+        onClickInput={onClickInput}
         onChangeText={onChangeText}
         submitNewTodo={submitNewTodo}
         submitNewProject={submitNewProject}

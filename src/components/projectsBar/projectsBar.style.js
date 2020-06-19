@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Navbar = styled.nav`
   position: ${(props) => (props.isFixed ? "fixed" : "static")};
-  background: #3b4252;
+  background: #4c566a;
   left: 33%;
   height: 100%;
   width: 67%;
@@ -29,12 +29,12 @@ export const List = styled.ul`
 export const ProjectButton = styled.button`
   padding: 0.5rem calc(0.5rem + 6px);
   cursor: pointer;
-  background: none;
+  background: ${props => props.highlightFolder ? "#5e81ac" : "none"};
+  color: ${props => props.highlightFolder ? "#ebcb8b" : "#eceff4"};
   border: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: #8fbcbb;
   font-size: 1rem;
   width: 100%;
 
@@ -43,24 +43,13 @@ export const ProjectButton = styled.button`
   }
 
   &:hover {
-    background: #8fbcbb;
-    color: #2e3440;
-
-    & > * {
-      color: #2e3440;
-    }
+    background: #5e81ac;
   }
 
   &:focus {
-    background: #3b4252;
+    background: #5e81ac;
     color: #ebcb8b;
-    outline: 1px solid #3b4252;
-    border-top: 1px solid #ebcb8b;
-    border-bottom: 1px solid #ebcb8b;
-
-    & > * {
-      color: #ebcb8b;
-    }
+    outline: 1px solid #ebcb8b;
   }
 
 `;

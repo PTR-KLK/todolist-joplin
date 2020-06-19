@@ -4,11 +4,10 @@ import { BarsIcon } from "react-line-awesome";
 export const Container = styled.header`
   display: flex;
   align-items: center;
-  background: #2e3440;
-  color: #8fbcbb;
+  background: #3b4252;
+  color: #eceff4;
   width: 100vw;
   z-index: 2;
-  border-bottom: 1px solid #8fbcbb;
 `;
 
 export const Title = styled.h2`
@@ -21,7 +20,7 @@ export const Title = styled.h2`
 `;
 
 export const MenuIcon = styled(BarsIcon)`
-  color: #8fbcbb;
+  color: #eceff4;
   font-size: 2rem;
 `;
 
@@ -33,6 +32,10 @@ export const MenuButton= styled.button`
   cursor: pointer;
 
   &:hover > * {
-    color: #8fbcbb;
+    color: #ebcb8b;
+  }
+
+  &:focus {
+    outline: 1px solid #ebcb8b;
   }
 `;
