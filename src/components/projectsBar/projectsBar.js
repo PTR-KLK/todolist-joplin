@@ -1,5 +1,11 @@
 import React from "react";
-import { Navbar, List, ProjectButton } from "./projectsBar.style";
+import {
+  Navbar,
+  List,
+  ProjectLi,
+  ProjectButton,
+  DeleteProject,
+} from "./projectsBar.style";
 import AddElement from "..//addElement/addElement";
 
 const Sidebar = (props) => {
@@ -8,15 +14,24 @@ const Sidebar = (props) => {
       <List>
         {props.todoTree.map((e) => {
           return (
-            <li key={e.id}>
+            <ProjectLi
+              key={e.id}
+              id={e.id}
+              highlightFolder={props.activeFolder === e.id}
+            >
               <ProjectButton
-                id={e.id}
                 onClick={props.onClickFolder}
                 highlightFolder={props.activeFolder === e.id}
               >
                 {e.title}
               </ProjectButton>
-            </li>
+              <DeleteProject
+                highlightFolder={props.activeFolder === e.id}
+                onClick={props.onClickDeleteFolder}
+              >
+                X
+              </DeleteProject>
+            </ProjectLi>
           );
         })}
         <AddElement

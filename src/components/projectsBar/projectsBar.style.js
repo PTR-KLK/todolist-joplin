@@ -26,30 +26,50 @@ export const List = styled.ul`
   margin: 0;
 `;
 
-export const ProjectButton = styled.button`
+export const ProjectLi = styled.li`
   padding: 0.5rem calc(0.5rem + 6px);
-  cursor: pointer;
   background: ${props => props.highlightFolder ? "#5e81ac" : "none"};
-  color: ${props => props.highlightFolder ? "#ebcb8b" : "#eceff4"};
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 1rem;
-  width: 100%;
-
-  & > * {
-    font-size: 1.75rem;
-  }
+  display: flex; 
+  justify-content: space-between;
+  align-items: stretch;
 
   &:hover {
     background: #5e81ac;
   }
 
+  & > *:not(:first-child) {
+    display: none;
+  }
+
+  &:hover > *:not(:first-child) {
+    display: block;
+  }
+
+`;
+
+export const ProjectButton = styled.button`
+  display: flex;
+  justify-items: flex-start;
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: ${props => props.highlightFolder ? "#ebcb8b" : "#eceff4"};
+  padding: 0;
+  margin: 0;
+
   &:focus {
-    background: #5e81ac;
-    color: #ebcb8b;
     outline: 1px solid #ebcb8b;
   }
 
+`;
+
+export const DeleteProject = styled.button`
+  color: #ebcb8b;
+  font-weight: bolder;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 1rem;
 `;

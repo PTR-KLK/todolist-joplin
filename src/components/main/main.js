@@ -31,6 +31,7 @@ function Main(props) {
                   activeFolder={props.activeFolder}
                   todoTree={props.todoData[1]}
                   onClickFolder={props.onClickFolder}
+                  onClickDeleteFolder={props.onClickDeleteFolder}
                   submitNewProject={props.submitNewProject}
                   onChangeText={props.onChangeText}
                   textInput={props.textInput}

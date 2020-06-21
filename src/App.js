@@ -43,7 +43,15 @@ function App() {
   };
 
   const onClickFolder = (event) => {
-    setFolder(event.target.id);
+    setFolder(event.target.parentNode.id);
+  };
+
+  const onClickDeleteFolder = (event) => {
+    fetch(`http://localhost:41184/folders/${event.target.parentNode.id}?token=${storageToken}`, {
+      method: "DELETE",
+    });
+    refreshTodoData();
+    console.log(todoData);
   };
 
   const onClickCheckbox = (event) => {
@@ -125,6 +133,7 @@ function App() {
         handleChange={handleChange}
         handleClick={handleClick}
         onClickFolder={onClickFolder}
+        onClickDeleteFolder={onClickDeleteFolder}
         fetchLoading={fetchLoading}
         onClickCheckbox={onClickCheckbox}
         activeFolder={activeFolder}
