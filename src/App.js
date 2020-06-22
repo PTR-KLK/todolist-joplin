@@ -47,11 +47,17 @@ function App() {
   };
 
   const onClickDeleteFolder = (event) => {
-    fetch(`http://localhost:41184/folders/${event.target.parentNode.id}?token=${storageToken}`, {
-      method: "DELETE",
-    });
-    refreshTodoData();
-    console.log(todoData);
+    fetch(
+      `http://localhost:41184/folders/${event.target.parentNode.id}?token=${storageToken}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    setTodoData([
+      todoData[0],
+      todoData[1].filter((e) => e.id !== event.target.parentNode.id),
+    ]);
   };
 
   const onClickCheckbox = (event) => {
