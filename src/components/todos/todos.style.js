@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TrashIcon } from "react-line-awesome";
 
 export const List = styled.ul`
   list-style: none;
@@ -8,11 +9,11 @@ export const List = styled.ul`
   & > * {
     &:not(:last-child) {
       border-bottom: 2px solid #434c5e;
-      padding: calc(2px + 0.875rem);
+      padding: calc(2px + 0.45rem);
     }
 
     &:last-child {
-      padding: calc(2px + 0.875rem) calc(2px + 0.875rem) 0;
+      padding: calc(2px + 0.45rem) calc(2px + 0.45rem) 0;
     }
   }
 `;
@@ -29,11 +30,27 @@ export const Checkbox = styled.input`
 `;
 
 export const Label = styled.label`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.75rem;
   margin: 0 0.875rem;
   font-size: 1.125rem;
 `;
 
 export const DueDate = styled.p`
-  margin: 0 0.875rem 0 auto;
+  text-align: center;
+  margin: 0 0.45rem;
   font-size: 1.125rem;
+`;
+
+export const DeleteIcon = styled(TrashIcon)`
+  color: #434c5e;
+  cursor: pointer;
+  padding: auto;
+  font-size: 1.75rem;
+
+  &:hover {
+    color: #bf616a;
+  }
 `;

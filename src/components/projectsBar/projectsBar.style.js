@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TrashIcon } from "react-line-awesome";
 
 export const Navbar = styled.nav`
   position: ${(props) => (props.isFixed ? "fixed" : "static")};
@@ -28,8 +29,8 @@ export const List = styled.ul`
 
 export const ProjectLi = styled.li`
   padding: 0.5rem calc(0.5rem + 6px);
-  background: ${props => props.highlightFolder ? "#5e81ac" : "none"};
-  display: flex; 
+  background: ${(props) => (props.highlightFolder ? "#5e81ac" : "none")};
+  display: flex;
   justify-content: space-between;
   align-items: stretch;
 
@@ -37,14 +38,13 @@ export const ProjectLi = styled.li`
     background: #5e81ac;
   }
 
-  & > *:not(:first-child) {
+  & > button:not(:first-child) {
     display: none;
   }
 
-  &:hover > *:not(:first-child) {
+  &:hover > button:not(:first-child) {
     display: block;
   }
-
 `;
 
 export const ProjectButton = styled.button`
@@ -54,22 +54,22 @@ export const ProjectButton = styled.button`
   cursor: pointer;
   background: none;
   border: none;
-  color: ${props => props.highlightFolder ? "#ebcb8b" : "#eceff4"};
+  color: ${(props) => (props.highlightFolder ? "#ebcb8b" : "#eceff4")};
   padding: 0;
   margin: 0;
 
   &:focus {
     outline: 1px solid #ebcb8b;
   }
-
 `;
 
-export const DeleteProject = styled.button`
-  color: #ebcb8b;
-  font-weight: bolder;
+export const DeleteIcon = styled(TrashIcon)`
   cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0 0 0 1rem;
+  color: #eceff4;
+  padding: auto;
+  font-size: 1rem;
+
+  &:hover {
+    color: #ebcb8b;
+  }
 `;

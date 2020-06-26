@@ -4,14 +4,15 @@ import {
   Checkbox,
   Label,
   DueDate,
-  Todo
+  Todo,
+  DeleteIcon,
 } from "./todos.style";
 
 const Todos = (props) => {
   return (
     <List>
       {props.data.todos.map((ele) => (
-        <Todo key={ele.id}>
+        <Todo id={ele.id} key={ele.id}>
           <Checkbox
             type="checkbox"
             name={ele.id}
@@ -24,6 +25,7 @@ const Todos = (props) => {
               {new Date(parseInt(ele.todo_due)).toLocaleString()}
             </DueDate>
           ) : null}
+          <DeleteIcon onClick={props.onClickDeleteTodo} />
         </Todo>
       ))}
     </List>

@@ -18,19 +18,23 @@ function App() {
   const [projectsBarVisible, setProjectsBarVisibility] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [activeInput, setActiveInput] = useState("");
+  const [refreshData, setRefreshData] = useState(true);
 
   const refreshTodoData = useCallback(() => {
     return Promise.all([
       fetch(notesUrl).then((response) => response.json()),
       fetch(fodlersUrl).then((response) => response.json()),
     ])
-      .then((data) => setTodoData([data[0], filterFolders(data)]))
+      .then((data) => setTodoData([...filterFolders(data)]))
       .then(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    refreshTodoData();
-  }, [refreshTodoData]);
+    if (refreshData) {
+      refreshTodoData();
+      setRefreshData(false);
+    }
+  }, [refreshTodoData, refreshData]);
 
   const size = useWindowSize();
 
@@ -54,10 +58,8 @@ function App() {
       }
     );
 
-    setTodoData([
-      todoData[0],
-      todoData[1].filter((e) => e.id !== event.target.parentNode.id),
-    ]);
+    setTodoData(todoData.filter((e) => e.id !== event.target.parentNode.id));
+    setFolder(todoData[0].id);
   };
 
   const onClickCheckbox = (event) => {
@@ -68,6 +70,17 @@ function App() {
         body: JSON.stringify({ todo_completed: !event.target.defaultChecked }),
       }
     );
+  };
+
+  const onClickDeleteTodo = (event) => {
+    fetch(
+      `http://localhost:41184/notes/${event.target.parentNode.id}?token=${storageToken}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    setRefreshData(true);
   };
 
   const onClickMenu = () => {
@@ -103,7 +116,7 @@ function App() {
       }),
     });
 
-    refreshTodoData();
+    setRefreshData(true);
     setTextInput("");
   };
 
@@ -117,7 +130,7 @@ function App() {
       }),
     }).then((response) => {
       response.json().then((data) => {
-        setTodoData([todoData[0], [...todoData[1], data]]);
+        setTodoData([...todoData, data]);
         setFolder(data.id);
       });
     });
@@ -140,6 +153,7 @@ function App() {
         handleClick={handleClick}
         onClickFolder={onClickFolder}
         onClickDeleteFolder={onClickDeleteFolder}
+        onClickDeleteTodo={onClickDeleteTodo}
         fetchLoading={fetchLoading}
         onClickCheckbox={onClickCheckbox}
         activeFolder={activeFolder}

@@ -4,7 +4,7 @@ import {
   List,
   ProjectLi,
   ProjectButton,
-  DeleteProject,
+  DeleteIcon,
 } from "./projectsBar.style";
 import AddElement from "..//addElement/addElement";
 
@@ -25,12 +25,7 @@ const Sidebar = (props) => {
               >
                 {e.title}
               </ProjectButton>
-              <DeleteProject
-                highlightFolder={props.activeFolder === e.id}
-                onClick={props.onClickDeleteFolder}
-              >
-                X
-              </DeleteProject>
+              <DeleteIcon onClick={props.onClickDeleteFolder} />
             </ProjectLi>
           );
         })}

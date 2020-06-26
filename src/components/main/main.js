@@ -29,7 +29,7 @@ function Main(props) {
                 <ProjectsBar
                   isFixed={props.size.width < 1024}
                   activeFolder={props.activeFolder}
-                  todoTree={props.todoData[1]}
+                  todoTree={props.todoData}
                   onClickFolder={props.onClickFolder}
                   onClickDeleteFolder={props.onClickDeleteFolder}
                   submitNewProject={props.submitNewProject}
@@ -59,9 +59,10 @@ function Main(props) {
                   <Projects
                     onChangeText={props.onChangeText}
                     textInput={props.textInput}
-                    todoTree={props.todoData[1]}
+                    todoTree={props.todoData}
                     activeFolder={props.activeFolder}
                     onClickCheckbox={props.onClickCheckbox}
+                    onClickDeleteTodo={props.onClickDeleteTodo}
                     submitNewTodo={props.submitNewTodo}
                     onClickInput={props.onClickInput}
                     activeInput={props.activeInput}

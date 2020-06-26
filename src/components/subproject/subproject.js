@@ -22,7 +22,11 @@ const Subproject = (props) => {
           activeInput={props.activeInput}
         />
         {obj.todos ? (
-          <Todos data={obj} onClickCheckbox={props.onClickCheckbox} />
+          <Todos
+            data={obj}
+            onClickCheckbox={props.onClickCheckbox}
+            onClickDeleteTodo={props.onClickDeleteTodo}
+          />
         ) : null}
         {obj.children ? obj.children.map((el) => renderList(el)) : null}
       </Section>

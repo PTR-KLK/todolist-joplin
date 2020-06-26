@@ -22,7 +22,11 @@ function Projects(props) {
         activeInput={props.activeInput}
       />
       {selectedList.todos ? (
-        <Todos data={selectedList} onClickCheckbox={props.onClickCheckbox} />
+        <Todos
+          data={selectedList}
+          onClickCheckbox={props.onClickCheckbox}
+          onClickDeleteTodo={props.onClickDeleteTodo}
+        />
       ) : null}
       {selectedList.children
         ? selectedList.children.map((el) => (
@@ -30,6 +34,7 @@ function Projects(props) {
               key={el.id}
               listObj={el}
               onClickCheckbox={props.onClickCheckbox}
+              onClickDeleteTodo={props.onClickDeleteTodo}
               onChangeText={props.onChangeText}
               textInput={props.textInput}
               submitNewTodo={props.submitNewTodo}
