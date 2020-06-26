@@ -138,6 +138,33 @@ function App() {
     setTextInput("");
   };
 
+  const submitNewSubproject = (event) => {
+    event.preventDefault();
+
+    const folderName = event.target.name;
+
+    const parentFolder = todoData.find((e) => e.id === folderName);
+    const todoDataCopy = todoData.filter((e) => e.id !== folderName);
+
+    fetch(`http://localhost:41184/folders?token=${storageToken}`, {
+      method: "POST",
+      body: JSON.stringify({
+        title: textInput,
+        parent_id: folderName,
+        children: [],
+      }),
+    }).then((response) => {
+      response.json().then((data) => {
+        setTodoData([
+          ...todoDataCopy,
+          { ...parentFolder, children: [data,...parentFolder.children] },
+        ]);
+      });
+    });
+
+    setTextInput("");
+  };
+
   return (
     <Router>
       <Header
@@ -167,6 +194,7 @@ function App() {
         onChangeText={onChangeText}
         submitNewTodo={submitNewTodo}
         submitNewProject={submitNewProject}
+        submitNewSubproject={submitNewSubproject}
       />
     </Router>
   );

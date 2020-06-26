@@ -5,7 +5,7 @@ export const SubmitForm = styled.form`
     props.todoStyle
       ? `display: flex;
   align-items: center;
-  padding: calc(1px + 0.875rem) calc(2px + 1.75rem) 0;`
+  padding: calc(1px + 0.875rem) calc(2px + 1rem) 0;`
       : `display: flex;
   align-items: center;
   padding: 0 0.5rem;`}

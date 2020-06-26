@@ -66,6 +66,7 @@ function Main(props) {
                     submitNewTodo={props.submitNewTodo}
                     onClickInput={props.onClickInput}
                     activeInput={props.activeInput}
+                    submitNewSubproject={props.submitNewSubproject}
                   />
                 </>
               )}
