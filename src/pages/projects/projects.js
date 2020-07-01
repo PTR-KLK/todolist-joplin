@@ -1,65 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Subproject from "../../components/subproject/subproject";
 import Todos from "../../components/todos/todos";
-import { Container, AddButton } from "./projects.style";
-import AddElement from "../../components/addElement/addElement";
+import { Container } from "./projects.style";
+import ProjectManage from "../../components/projectManage/porejctManage";
 
 function Projects(props) {
-  const [addTodoVisible, setAddTodoVisible] = useState(false);
-  const [addSubprojectVisible, setAddSubprojectVisible] = useState(false);
-
   const selectedList = props.activeFolder
     ? props.todoTree.find((e) => e.id === props.activeFolder)
     : props.todoTree[0];
 
-  const showAddTodo = () => {
-    // const regex = /[^-]*$/g;
-
-    // console.log(event.target.id.replace(regex, "").replace("-", ""));
-
-    setAddTodoVisible(!addTodoVisible);
-  };
-
-  const showAddSubrpoject = () => {
-    // const regex = /[^-]*$/g;
-
-    // console.log(event.target.id.replace(regex, "").replace("-", ""));
-
-    setAddSubprojectVisible(!addSubprojectVisible);
-  };
-
   return (
     <Container>
-      <AddButton id={`${selectedList.id}-addTodo`} onClick={showAddTodo}>
-        New Todo
-      </AddButton>
-      <AddButton id={`${selectedList.id}-addSubproject`} onClick={showAddSubrpoject}>
-        New Subproject
-      </AddButton>
-      {addTodoVisible ? (
-        <AddElement
-          submitNewElement={props.submitNewTodo}
-          onChangeText={props.onChangeText}
-          textInput={props.textInput}
-          placeholderText="Add new task..."
-          submitName={selectedList.id}
-          todoStyle={true}
-          onClickInput={props.onClickInput}
-          activeInput={props.activeInput}
-        />
-      ) : null}
-      {addSubprojectVisible ? (
-        <AddElement
-          submitNewElement={props.submitNewSubproject}
-          onChangeText={props.onChangeText}
-          textInput={props.textInput}
-          placeholderText="Add new subproject..."
-          submitName={selectedList.id}
-          todoStyle={true}
-          onClickInput={props.onClickInput}
-          activeInput={props.activeInput}
-        />
-      ) : null}
+      <ProjectManage
+        onChangeText={props.onChangeText}
+        textInput={props.textInput}
+        submitName={selectedList.id}
+        onClickInput={props.onClickInput}
+        activeInput={props.activeInput}
+        submitNewTodo={props.submitNewTodo}
+        submitNewSubproject={props.submitNewSubproject}
+      />
       {selectedList.todos ? (
         <Todos
           data={selectedList}
@@ -77,6 +37,7 @@ function Projects(props) {
               onChangeText={props.onChangeText}
               textInput={props.textInput}
               submitNewTodo={props.submitNewTodo}
+              submitNewSubproject={props.submitNewSubproject}
               onClickInput={props.onClickInput}
               activeInput={props.activeInput}
             />

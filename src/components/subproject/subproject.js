@@ -1,7 +1,7 @@
 import React from "react";
 import Todos from "../todos/todos";
 import { Section, Title, Checkbox, Label } from "./subproject.style";
-import AddElement from "../addElement/addElement";
+import ProjectManage from "../projectManage/porejctManage";
 
 const Subproject = (props) => {
   const renderList = (obj) => {
@@ -11,15 +11,14 @@ const Subproject = (props) => {
           <Checkbox type="checkbox" name={obj.id} />
           <Label htmlFor={obj.id}>{obj.title}</Label>
         </Title>
-        <AddElement
-          submitNewElement={props.submitNewTodo}
+        <ProjectManage
           onChangeText={props.onChangeText}
           textInput={props.textInput}
-          placeholderText="Add new task..."
           submitName={obj.id}
-          todoStyle={true}
           onClickInput={props.onClickInput}
           activeInput={props.activeInput}
+          submitNewTodo={props.submitNewTodo}
+          submitNewSubproject={props.submitNewSubproject}
         />
         {obj.todos ? (
           <Todos

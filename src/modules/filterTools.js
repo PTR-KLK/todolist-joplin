@@ -1,18 +1,17 @@
 export const filterFolders = ([todoArr, folderArr]) => {
-  const parentIdArr = Array.from(
-    new Set(todoArr.filter((e) => e.is_todo === 1).map((e) => e.parent_id))
+  const excludeArr = Array.from(
+    new Set(todoArr.filter((e) => e.is_todo === 0).map((e) => e.parent_id))
   );
 
-  // filter array when its elements have id in parentIdArray or one of element child or nth-child has id in parentIdArray
-
+  // filter array with excludeArr
   const filterArr = (arr) =>
     arr.filter((e) =>
-      parentIdArr.includes(e.id)
+      !excludeArr.includes(e.id)
         ? true
         : e.children &&
           e.children.reduce(
             (total, curr) =>
-              parentIdArr.includes(curr.id) || total
+              !excludeArr.includes(curr.id) || total
                 ? true
                 : curr.children && filterArr(curr.children),
             false
@@ -26,7 +25,7 @@ export const filterFolders = ([todoArr, folderArr]) => {
   const filterFolders = (arr) => {
     return filterArr(arr).map((e) =>
       e.children
-        ? parentIdArr.includes(e.id)
+        ? !excludeArr.includes(e.id)
           ? {
               ...e,
               children: filterFolders(e.children),
